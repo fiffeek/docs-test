@@ -1,0 +1,56 @@
+name: Deploy Docusaurus Docs
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy-docs:
+    name: Build and Deploy Docs
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check if docs changed (for main branch only)
+        id: docs-changes
+        if: startsWith(github.ref, 'refs/heads/main')
+        run: |
+          if git diff --quiet HEAD^ HEAD -- ./docs; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Stop if no docs changes
+        if: steps.docs-changes.outputs.changed == 'false'
+        run: |
+          echo "No changes in ./docs — skipping deployment."
+          exit 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: "npm"
+          cache-dependency-path: ./docs/package-lock.json
+
+      - name: Install dependencies
+        working-directory: ./docs
+        run: npm ci
+
+      - name: Build documentation
+        working-directory: ./docs
+        run: npm run build
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs/build
+          user_name: github-actions[bot]
+          user_email: 41898282+github-actions[bot]@users.noreply.github.com

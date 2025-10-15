@@ -21,22 +21,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Check if docs changed (for main branch only)
-        id: docs-changes
-        if: startsWith(github.ref, 'refs/heads/main')
-        run: |
-          if git diff --quiet HEAD^ HEAD -- ./docs; then
-            echo "changed=false" >> $GITHUB_OUTPUT
-          else
-            echo "changed=true" >> $GITHUB_OUTPUT
-          fi
-
-      - name: Stop if no docs changes
-        if: steps.docs-changes.outputs.changed == 'false'
-        run: |
-          echo "No changes in ./docs — skipping deployment."
-          exit 0
-
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:

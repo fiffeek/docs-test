@@ -1,3 +1,0 @@
-# Whatever
-
-[tea](./tea.md)

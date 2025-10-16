@@ -2,9 +2,10 @@
 sidebar_position: 1
 ---
 
-heullo
-
 # Tutorial Intro
+
+![Rotating monitors](/output/logo.png)
+
 
 Let's discover **Docusaurus in less than 5 minutes**.
 

@@ -46,6 +46,6 @@ jobs:
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add docs/versions.json
+          git add docs
           git commit -am "docs: update version for ${{github.ref_name}}"
           git push origin HEAD:main

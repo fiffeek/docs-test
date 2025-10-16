@@ -147,3 +147,14 @@ const config: Config = {
 };
 
 export default config;
+
+// [
+//     require.resolve('@easyops-cn/docusaurus-search-local'),
+//     {
+//       hashed: true,
+//       indexDocs: true,
+//       indexBlog: false,
+//       docsPluginIdForPreferredVersion: "terranetes-controller",
+//       docsRouteBasePath: "terranetes-controller"
+//     }
+//   ],

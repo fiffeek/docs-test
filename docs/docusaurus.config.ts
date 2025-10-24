@@ -31,6 +31,17 @@ const config: Config = {
     locales: ['en'],
   },
 
+  // Custom HTML tags for the <head> section
+  headTags: [
+    {
+      tagName: 'meta',
+      attributes: {
+        name: 'google-site-verification',
+        content: 'LaGbZet27I9VYSccGGJ1xGrpwg4lm8xlEOkBu4DGnn4',
+      },
+    },
+  ],
+
   presets: [
     [
       'classic',

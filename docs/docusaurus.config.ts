@@ -15,7 +15,7 @@ const config: Config = {
   },
 
   // Set the production url of your site here
-  url: 'https://gh.filipmikina.com',
+  url: 'https://fiffeek.github.io',
   baseUrl: '/docs-test/',
 
   organizationName: 'fiffeek',
